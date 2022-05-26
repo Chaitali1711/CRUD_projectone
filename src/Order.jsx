@@ -36,7 +36,7 @@ state={
 
     fnAddbtn =(cust,index)=>{
         let prodArr=this.state.products;
-        console.log(prodArr)
+        // console.log(prodArr)
         prodArr.Quantity = prodArr.Quantity + 1;
         this.setState({
             products:prodArr
@@ -47,14 +47,20 @@ state={
 
     fnRembtn =()=>{
         let prodArr=this.state.products;
-        console.log(prodArr)
+        
+
+        if(prodArr.Quantity == 0){
+            // alert("please add something to cart")
+            return;
+        }
+        else{
+        // console.log(prodArr)
         prodArr.Quantity = prodArr.Quantity - 1;
         this.setState({
             products:prodArr
         })
-
-        if(prodArr.Quantity < 0){
-            alert("please add something to cart")
         }
+        console.log(prodArr.Quantity);
+
     }
 }
