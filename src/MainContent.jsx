@@ -57,20 +57,21 @@ export default class MainContent extends Component {
               <th>Customer Name</th>
               <th>Phone</th>
               <th>City</th>
+              <th>View</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.customers.map((cust) => {
+            {this.state.customers.map((cust,index) => {
               return (
                 <tr key={cust.id}>
                   <td>{cust.id}</td>
-                  <td>{cust.name}</td>
+                  <td><input type="text" ref="name" value={cust.name} onChange={(cust)=>this.funOnchange(cust)}/></td>
                   <td>{
-                  cust.phone ? cust.phone : 
-                  (<div className="bg-warning">No Contact Info</div>)
-                  
+                      cust.phone ? cust.phone : 
+                      (<div className="bg-warning">No Contact Info</div>)
                   }</td>
                   <td>{cust.address.city}</td>
+                  <td><button onClick={()=>this.funViewid(cust,index)}>View Id</button></td>
                 </tr>
               );
             })}
@@ -79,6 +80,19 @@ export default class MainContent extends Component {
       </div>
     );
   }
+
+  funViewid=(cust,index)=>{
+  // console.log("hello");
+  console.log(cust,index)
+  console.log(cust.name)
+  var custArr = this.state.customers;
+  custArr[index].name = "Aakash"
+  this.setState({ customers: custArr });
+  console.log(cust.name)
+    
+  }
+
+  
   onRefreshClick = () => {
     this.setState({
       customerCount: 7,
